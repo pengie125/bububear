@@ -54,7 +54,7 @@ button {
 button:hover { transform: scale(1.1); }
 
 .kiss, .hug-animation {
-  font-size: 2em;
+  font-size: 3em; /* bigger emojis */
   position: absolute;
 }
 
@@ -71,43 +71,25 @@ button:hover { transform: scale(1.1); }
   text-shadow: 0 0 10px #fff;
 }
 
-@keyframes bounce {
-  0% { transform: scale(0); }
-  50% { transform: scale(1.3); }
-  100% { transform: scale(1); }
-}
-
-@keyframes glow {
-  0% { text-shadow: 0 0 10px #fff, 0 0 20px #ffff00, 0 0 30px #ff0; }
-  100% { text-shadow: 0 0 20px #fff, 0 0 30px #ffff00, 0 0 40px #ff0; }
-}
-
-@keyframes heartbeat {
-  0%, 100% { transform: translate(-50%, -50%) scale(1); }
-  50% { transform: translate(-50%, -50%) scale(1.2); }
-}
+@keyframes bounce { 0% { transform: scale(0); } 50% { transform: scale(1.3); } 100% { transform: scale(1); } }
+@keyframes glow { 0% { text-shadow: 0 0 10px #fff, 0 0 20px #ffff00, 0 0 30px #ff0; } 100% { text-shadow: 0 0 20px #fff, 0 0 30px #ffff00, 0 0 40px #ff0; } }
+@keyframes heartbeat { 0%,100% { transform: translate(-50%,-50%) scale(1); } 50% { transform: translate(-50%,-50%) scale(1.2); } }
 
 .kiss-sparkle, .hug-sparkle {
   position: absolute;
-  font-size: 0.8em;
+  font-size: 1em;
   animation: sparkle-float 2s linear forwards;
 }
 
-@keyframes sparkle-float {
-  0% { transform: translateY(0); opacity: 1; }
-  100% { transform: translateY(-150px); opacity: 0; }
-}
+@keyframes sparkle-float { 0% { transform: translateY(0); opacity: 1; } 100% { transform: translateY(-180px); opacity: 0; } }
 
 .confetti {
   position: absolute;
-  font-size: 1.5em;
+  font-size: 2em;
   animation: confetti-fall 1.5s linear forwards;
 }
 
-@keyframes confetti-fall {
-  0% { transform: translateY(0) rotate(0deg); opacity: 1; }
-  100% { transform: translateY(200px) rotate(360deg); opacity: 0; }
-}
+@keyframes confetti-fall { 0% { transform: translateY(0) rotate(0deg); opacity:1; } 100% { transform: translateY(200px) rotate(360deg); opacity:0; } }
 
 </style>
 </head>
@@ -115,14 +97,12 @@ button:hover { transform: scale(1.1); }
 
 <div class="invitation">
   <h1 id="title">Happy Birthday Bubu Bear 🧸</h1>
-
   <div id="message">
     Even when we are far apart, I'll always love you. <br>
     Thank you for being patient all these years. <br>
     You are my favourite person. I love you more than anything. <br>
     <span id="naughty" style="display:none;">I like it when you're naughty 😉</span>
   </div>
-
   <button id="kissBtn">Click for a kiss 💋</button>
   <button id="hugBtn">Send Hug 🤍</button>
 </div>
@@ -130,38 +110,33 @@ button:hover { transform: scale(1.1); }
 <div id="kissContainer"></div>
 <div id="hugContainer"></div>
 
-<!-- Embedded soft chime -->
+<!-- REAL soft chime hosted online -->
 <audio id="chimeSound" preload="auto">
-  <source src="data:audio/mp3;base64,//uQxAAAA..." type="audio/mpeg">
+  <source src="https://freesound.org/data/previews/524/524182_4019023-lq.mp3" type="audio/mpeg">
 </audio>
 
 <script>
-const kissBtn = document.getElementById('kissBtn');
-const kissContainer = document.getElementById('kissContainer');
-const hugContainer = document.getElementById('hugContainer');
-const title = document.getElementById('title');
-const naughty = document.getElementById('naughty');
-const chimeSound = document.getElementById('chimeSound');
+const kissBtn=document.getElementById('kissBtn');
+const kissContainer=document.getElementById('kissContainer');
+const hugContainer=document.getElementById('hugContainer');
+const title=document.getElementById('title');
+const naughty=document.getElementById('naughty');
+const chimeSound=document.getElementById('chimeSound');
 
-// Play sound on first interaction if blocked
-function playChime() {
-  chimeSound.currentTime = 0;
-  chimeSound.play().catch(()=>{}); // ignore autoplay block
-}
+function playChime(){ chimeSound.currentTime=0; chimeSound.play().catch(()=>{}); }
 
-kissBtn.addEventListener('click', () => {
+// KISS BUTTON
+kissBtn.addEventListener('click',()=>{
   playChime();
 
-  // Multiple kisses
   for(let i=0;i<5;i++){
-    const kiss = document.createElement('div');
+    const kiss=document.createElement('div');
     kiss.textContent="💋";
     kiss.className="kiss";
     kiss.style.left=Math.random()*(window.innerWidth-50)+'px';
     kiss.style.top='80%';
     kissContainer.appendChild(kiss);
 
-    // Kiss sparkles
     for(let j=0;j<4;j++){
       const sparkle=document.createElement('div');
       sparkle.className="kiss-sparkle";
@@ -171,17 +146,14 @@ kissBtn.addEventListener('click', () => {
       kissContainer.appendChild(sparkle);
       setTimeout(()=>sparkle.remove(),2000);
     }
-
     setTimeout(()=>kiss.remove(),2000);
   }
 
-  // LEVEL UP in center
   const levelup=document.createElement('div');
   levelup.textContent="LEVEL UP 🎮 Bubu Bear +1";
   levelup.className="levelup";
   kissContainer.appendChild(levelup);
 
-  // LEVEL UP sparkles
   const sparkleSymbols=["✨","💫","🌟"];
   for(let i=0;i<10;i++){
     const sparkle=document.createElement('div');
@@ -195,28 +167,25 @@ kissBtn.addEventListener('click', () => {
 
   setTimeout(()=>levelup.remove(),1500);
 
-  // Extra confetti hearts
   const confettiSymbols=["💜","💚","✨","💖","💋"];
   for(let i=0;i<40;i++){
     const confetti=document.createElement('div');
     confetti.className='confetti';
     confetti.textContent=confettiSymbols[Math.floor(Math.random()*confettiSymbols.length)];
     confetti.style.left=Math.random()*window.innerWidth+'px';
-    confetti.style.fontSize=(12+Math.random()*12)+'px';
+    confetti.style.fontSize=(20+Math.random()*8)+'px'; // bigger
     kissContainer.appendChild(confetti);
     setTimeout(()=>confetti.remove(),1500);
   }
 });
 
-// Reveal secret
-title.addEventListener('click', ()=>naughty.style.display='inline');
+// SECRET MESSAGE
+title.addEventListener('click',()=>naughty.style.display='inline');
 
-// Hug button
-hugBtn.addEventListener('click', ()=>{
+// HUG BUTTON
+hugBtn.addEventListener('click',()=>{
   playChime();
-
   const hugSymbols=["🤍","💖","💛","💚","🤗","💋"];
-  // floating hugs
   for(let i=0;i<6;i++){
     const hug=document.createElement('div');
     hug.textContent=hugSymbols[Math.floor(Math.random()*hugSymbols.length)];
@@ -228,14 +197,13 @@ hugBtn.addEventListener('click', ()=>{
     setTimeout(()=>hug.remove(),2000);
   }
 
-  // Extra hearts + kisses floating up
   for(let i=0;i<50;i++){
     const confetti=document.createElement('div');
     confetti.className='hug-sparkle';
     confetti.textContent=hugSymbols[Math.floor(Math.random()*hugSymbols.length)];
     confetti.style.left=Math.random()*window.innerWidth+'px';
     confetti.style.top='80%';
-    confetti.style.fontSize=(12+Math.random()*12)+'px';
+    confetti.style.fontSize=(20+Math.random()*8)+'px';
     hugContainer.appendChild(confetti);
     setTimeout(()=>confetti.remove(),2000);
   }
