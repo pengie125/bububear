@@ -1,167 +1,152 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Happy Birthday Bubu Bear 🧸</title>
+<meta charset="UTF-8">
+<title>Bubu Bear Birthday 🎂</title>
+<style>
+  body {
+    background: linear-gradient(to bottom right, #a974ff, #00ff80);
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    text-align: center;
+    color: #fff;
+    overflow-x: hidden;
+  }
 
-  <!-- Cute anime font -->
-  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+  h1 {
+    font-size: 3em;
+    margin-top: 50px;
+    cursor: pointer;
+  }
 
-  <style>
-    body {
-      margin: 0;
-      height: 100vh;
-      background: linear-gradient(135deg, #d6c7ff, #e8fff1);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-family: 'Quicksand', sans-serif;
-      overflow: hidden;
-    }
+  #message {
+    font-size: 1.5em;
+    margin: 20px;
+  }
 
-    .card {
-      background: rgba(255, 255, 255, 0.92);
-      padding: 45px 35px;
-      border-radius: 32px;
-      text-align: center;
-      box-shadow: 0 20px 50px rgba(120, 90, 180, 0.25);
-      max-width: 430px;
-      z-index: 2;
-      animation: pop 1s ease;
-    }
+  button {
+    font-size: 1.2em;
+    padding: 10px 20px;
+    margin: 15px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    background-color: #ff9ce3;
+    color: #000;
+    transition: transform 0.2s;
+  }
 
-    @keyframes pop {
-      0% { transform: scale(0.85); opacity: 0; }
-      100% { transform: scale(1); opacity: 1; }
-    }
+  button:hover {
+    transform: scale(1.1);
+  }
 
-    h1 {
-      color: #8b6cff;
-      font-size: 2.3em;
-      margin-bottom: 15px;
-      cursor: pointer;
-    }
+  .kiss {
+    font-size: 2em;
+    animation: float 1s ease forwards;
+  }
 
-    p {
-      font-size: 1.1em;
-      color: #555;
-      line-height: 1.7;
-    }
+  .levelup {
+    font-size: 2em;
+    color: #ffff00;
+    animation: bounce 0.8s ease forwards;
+  }
 
-    .buttons {
-      margin-top: 25px;
-    }
+  @keyframes float {
+    0% { transform: translateY(0); opacity: 0; }
+    50% { transform: translateY(-30px); opacity: 1; }
+    100% { transform: translateY(-60px); opacity: 0; }
+  }
 
-    button {
-      padding: 13px 28px;
-      font-size: 1em;
-      border: none;
-      border-radius: 30px;
-      cursor: pointer;
-      margin: 8px;
-      color: white;
-      background: linear-gradient(135deg, #9b7cff, #7ee0b5);
-      box-shadow: 0 8px 20px rgba(140, 200, 170, 0.5);
-      transition: transform 0.2s;
-    }
+  @keyframes bounce {
+    0% { transform: scale(0); }
+    50% { transform: scale(1.3); }
+    100% { transform: scale(1); }
+  }
 
-    button:hover {
-      transform: scale(1.05);
-    }
+  #hug {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    font-size: 2em;
+    cursor: pointer;
+  }
 
-    .hidden {
-      display: none;
-      margin-top: 15px;
-      color: #8b6cff;
-      font-size: 1em;
-    }
+  .hug-animation {
+    position: absolute;
+    font-size: 2em;
+    animation: hugfloat 2s ease forwards;
+  }
 
-    .float {
-      position: absolute;
-      animation: float 7s infinite ease-in;
-      opacity: 0.9;
-    }
-
-    @keyframes float {
-      0% {
-        transform: translateY(100vh);
-        opacity: 1;
-      }
-      100% {
-        transform: translateY(-10vh);
-        opacity: 0;
-      }
-    }
-
-    iframe {
-      display: none;
-    }
-  </style>
+  @keyframes hugfloat {
+    0% { top: 50%; opacity: 1; }
+    100% { top: 10%; opacity: 0; }
+  }
+</style>
 </head>
 <body>
 
-  <div class="card">
-    <h1 onclick="revealSecret()">🎂 Happy Birthday Bubu Bear 🧸</h1>
+<h1 id="title">Happy Birthday Bubu Bear 🧸</h1>
 
-    <p>
-      Even when we are far apart,<br>
-      I’ll always love you. 💕<br><br>
+<div id="message">
+  Even when we are far apart, I'll always love you. <br>
+  Thank you for being patient all these years. <br>
+  You are my favourite person. I love you more than anything. <br>
+  <span style="display:none;" id="naughty">I like it when you're naughty 😉</span>
+</div>
 
-      Thank you for being so patient<br>
-      all these years.<br><br>
+<button id="kissBtn">Click for a kiss 💋</button>
+<button id="hugBtn">Send Hug 🤍</button>
 
-      You are my favorite person<br>
-      in the whole world. ✨<br><br>
+<div id="kissContainer"></div>
 
-      I love you more than anything. 💖
-    </p>
+<script>
+  const kissBtn = document.getElementById('kissBtn');
+  const kissContainer = document.getElementById('kissContainer');
+  const title = document.getElementById('title');
+  const naughty = document.getElementById('naughty');
 
-    <div class="hidden" id="secret">
-      😏 I like it when you’re naughty… wink wink.
-    </div>
+  kissBtn.addEventListener('click', () => {
+    // Create kiss emoji
+    const kiss = document.createElement('div');
+    kiss.textContent = "💋";
+    kiss.className = 'kiss';
+    kiss.style.position = 'absolute';
+    kiss.style.left = Math.random() * (window.innerWidth - 50) + 'px';
+    kiss.style.top = '80%';
+    kissContainer.appendChild(kiss);
 
-    <div class="buttons">
-      <button onclick="playMusic()">Click for a kiss 💋</button>
-      <button onclick="sendHug()">Send Hug 🤍</button>
-    </div>
-  </div>
+    // Remove after animation
+    setTimeout(() => kiss.remove(), 1000);
 
-  <!-- Music -->
-  <iframe id="music"
-    src="https://www.youtube.com/embed/2-xc6WyswZI?autoplay=1&loop=1&playlist=2-xc6WyswZI"
-    allow="autoplay">
-  </iframe>
+    // Show LEVEL UP once
+    const levelup = document.createElement('div');
+    levelup.textContent = "LEVEL UP 🎮 Bubu Bear +1";
+    levelup.className = 'levelup';
+    levelup.style.position = 'absolute';
+    levelup.style.left = '50%';
+    levelup.style.top = '40%';
+    levelup.style.transform = 'translateX(-50%)';
+    kissContainer.appendChild(levelup);
 
-  <script>
-    function playMusic() {
-      document.getElementById("music").style.display = "block";
-    }
+    setTimeout(() => levelup.remove(), 800);
+  });
 
-    function revealSecret() {
-      document.getElementById("secret").style.display = "block";
-    }
+  // Title click reveals naughty message
+  title.addEventListener('click', () => {
+    naughty.style.display = 'inline';
+  });
 
-    function floatEmoji(emoji) {
-      const item = document.createElement("div");
-      item.classList.add("float");
-      item.innerHTML = emoji;
-      item.style.left = Math.random() * 100 + "vw";
-      item.style.fontSize = Math.random() * 20 + 18 + "px";
-      document.body.appendChild(item);
-
-      setTimeout(() => item.remove(), 7000);
-    }
-
-    function sendHug() {
-      for (let i = 0; i < 12; i++) {
-        setTimeout(() => floatEmoji("🫂"), i * 150);
-        setTimeout(() => floatEmoji("🤍"), i * 150);
-      }
-    }
-
-    setInterval(() => floatEmoji("💜"), 800);
-    setInterval(() => floatEmoji("✨"), 1200);
-  </script>
+  // Hug button
+  const hugBtn = document.getElementById('hugBtn');
+  hugBtn.addEventListener('click', () => {
+    const hug = document.createElement('div');
+    hug.textContent = "🤍";
+    hug.className = 'hug-animation';
+    hug.style.left = Math.random() * (window.innerWidth - 50) + 'px';
+    hug.style.top = '80%';
+    document.body.appendChild(hug);
+    setTimeout(() => hug.remove(), 2000);
+  });
+</script>
 
 </body>
 </html>
