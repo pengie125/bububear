@@ -65,7 +65,7 @@
     font-size: 2em;
     color: #ffff00;
     font-weight: bold;
-    animation: bounce 0.8s ease forwards, glow 1s ease-in-out infinite alternate;
+    animation: bounce 0.8s ease forwards, glow 1s ease-in-out infinite alternate, heartbeat 1s ease-in-out infinite;
     position: fixed;
     left: 50%;
     top: 50%;
@@ -89,6 +89,56 @@
   @keyframes glow {
     0% { text-shadow: 0 0 10px #fff, 0 0 20px #ffff00, 0 0 30px #ff0; }
     100% { text-shadow: 0 0 20px #fff, 0 0 30px #ffff00, 0 0 40px #ff0; }
+  }
+
+  @keyframes heartbeat {
+    0%, 100% { transform: translate(-50%, -50%) scale(1); }
+    50% { transform: translate(-50%, -50%) scale(1.2); }
+  }
+
+  .sparkle {
+    position: absolute;
+    font-size: 1em;
+    animation: sparkle-fall 0.8s linear forwards;
+  }
+
+  @keyframes sparkle-fall {
+    0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(-20px) rotate(360deg); opacity: 0; }
+  }
+
+  .hug-animation {
+    position: absolute;
+    font-size: 2em;
+    animation: hugfloat 2s ease forwards;
+  }
+
+  @keyframes hugfloat {
+    0% { top: 80%; opacity: 1; }
+    100% { top: 20%; opacity: 0; }
+  }
+
+  .confetti {
+    position: absolute;
+    font-size: 1.5em;
+    animation: confetti-fall 1.5s linear forwards;
+  }
+
+  @keyframes confetti-fall {
+    0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(200px) rotate(360deg); opacity: 0; }
+  }
+</style>
+</head>
+<body>
+
+<div class="invitation">
+  <h1 id="title">Happy Birthday Bubu Bear 🧸</h1>
+
+  <div id="message">
+    Even when we are far apart, I'll always love you. <br>
+    Thank you for being patient all these years. <br>
+    You are my favourite person. I love you more than anything. <br>
     <span id="naughty" style="display:none;">I like it when you're naughty 😉</span>
   </div>
 
@@ -125,7 +175,7 @@
     kissContainer.appendChild(kiss);
     setTimeout(() => kiss.remove(), 1000);
 
-    // LEVEL UP in center with glow
+    // LEVEL UP in center with glow & heartbeat
     const levelup = document.createElement('div');
     levelup.textContent = "LEVEL UP 🎮 Bubu Bear +1";
     levelup.className = 'levelup';
@@ -144,7 +194,8 @@
     }
 
     setTimeout(()=>levelup.remove(),1500);
-       // Confetti
+
+    // Confetti
     const confettiSymbols = ["💜","💚","✨","💖"];
     for(let i=0;i<25;i++){
       const confetti = document.createElement('div');
