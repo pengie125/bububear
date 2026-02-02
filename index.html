@@ -4,128 +4,110 @@
 <meta charset="UTF-8">
 <title>Bubu Bear Birthday 🎂</title>
 <style>
-  body {
-    background: linear-gradient(to bottom right, #a974ff, #00ff80);
-    font-family: 'Comic Sans MS', cursive, sans-serif;
-    text-align: center;
-    color: #fff;
-    overflow-x: hidden;
-    margin: 0;
-    padding: 0;
-  }
+body {
+  background: linear-gradient(to bottom right, #a974ff, #00ff80);
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+  text-align: center;
+  color: #fff;
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+}
 
-  .invitation {
-    max-width: 600px;
-    margin: 50px auto;
-    padding: 30px;
-    background: rgba(0,0,0,0.3);
-    border-radius: 20px;
-    box-shadow: 0 0 20px #fff;
-  }
+.invitation {
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 30px;
+  background: rgba(0,0,0,0.3);
+  border-radius: 20px;
+  box-shadow: 0 0 20px #fff;
+}
 
-  h1 {
-    font-size: 3em;
-    cursor: pointer;
-  }
+h1 {
+  font-size: 3em;
+  cursor: pointer;
+}
 
-  #message {
-    font-size: 1.5em;
-    margin: 20px 0;
-  }
+#message {
+  font-size: 1.5em;
+  margin: 20px 0;
+}
 
-  #naughty {
-    font-family: 'Brush Script MT', cursive;
-    color: #ffcc00;
-    font-size: 1.5em;
-  }
+#naughty {
+  font-family: 'Brush Script MT', cursive;
+  color: #ffcc00;
+  font-size: 1.5em;
+}
 
-  button {
-    font-size: 1.2em;
-    padding: 10px 20px;
-    margin: 15px;
-    border: none;
-    border-radius: 12px;
-    cursor: pointer;
-    background-color: #ff9ce3;
-    color: #000;
-    transition: transform 0.2s;
-  }
+button {
+  font-size: 1.2em;
+  padding: 10px 20px;
+  margin: 15px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  background-color: #ff9ce3;
+  color: #000;
+  transition: transform 0.2s;
+}
 
-  button:hover {
-    transform: scale(1.1);
-  }
+button:hover { transform: scale(1.1); }
 
-  .kiss, .hug-animation {
-    font-size: 2em;
-    position: absolute;
-  }
+.kiss, .hug-animation {
+  font-size: 2em;
+  position: absolute;
+}
 
-  .levelup {
-    font-size: 2em;
-    color: #ffff00;
-    font-weight: bold;
-    animation: bounce 0.8s ease forwards, glow 1s ease-in-out infinite alternate, heartbeat 1s ease-in-out infinite;
-    position: fixed;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 9999;
-    text-shadow: 0 0 10px #fff;
-  }
+.levelup {
+  font-size: 2em;
+  color: #ffff00;
+  font-weight: bold;
+  animation: bounce 0.8s ease forwards, glow 1s ease-in-out infinite alternate, heartbeat 1s ease-in-out infinite;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+  text-shadow: 0 0 10px #fff;
+}
 
-  @keyframes bounce {
-    0% { transform: scale(0); }
-    50% { transform: scale(1.3); }
-    100% { transform: scale(1); }
-  }
+@keyframes bounce {
+  0% { transform: scale(0); }
+  50% { transform: scale(1.3); }
+  100% { transform: scale(1); }
+}
 
-  @keyframes glow {
-    0% { text-shadow: 0 0 10px #fff, 0 0 20px #ffff00, 0 0 30px #ff0; }
-    100% { text-shadow: 0 0 20px #fff, 0 0 30px #ffff00, 0 0 40px #ff0; }
-  }
+@keyframes glow {
+  0% { text-shadow: 0 0 10px #fff, 0 0 20px #ffff00, 0 0 30px #ff0; }
+  100% { text-shadow: 0 0 20px #fff, 0 0 30px #ffff00, 0 0 40px #ff0; }
+}
 
-  @keyframes heartbeat {
-    0%, 100% { transform: translate(-50%, -50%) scale(1); }
-    50% { transform: translate(-50%, -50%) scale(1.2); }
-  }
+@keyframes heartbeat {
+  0%, 100% { transform: translate(-50%, -50%) scale(1); }
+  50% { transform: translate(-50%, -50%) scale(1.2); }
+}
 
-  .sparkle {
-    position: absolute;
-    font-size: 1em;
-    animation: sparkle-fall 0.8s linear forwards;
-  }
+.kiss-sparkle, .hug-sparkle {
+  position: absolute;
+  font-size: 0.8em;
+  animation: sparkle-float 2s linear forwards;
+}
 
-  @keyframes sparkle-fall {
-    0% { transform: translateY(0) rotate(0deg); opacity: 1; }
-    100% { transform: translateY(-20px) rotate(360deg); opacity: 0; }
-  }
+@keyframes sparkle-float {
+  0% { transform: translateY(0); opacity: 1; }
+  100% { transform: translateY(-150px); opacity: 0; }
+}
 
-  .kiss-sparkle {
-    position: absolute;
-    font-size: 0.8em;
-    animation: kiss-sparkle-float 1.5s linear forwards;
-  }
+.confetti {
+  position: absolute;
+  font-size: 1.5em;
+  animation: confetti-fall 1.5s linear forwards;
+}
 
-  @keyframes kiss-sparkle-float {
-    0% { transform: translate(0,0); opacity: 1; }
-    100% { transform: translate(0,-120px); opacity: 0; }
-  }
-
-  @keyframes hug-float {
-    0% { transform: translateY(0); opacity: 1; }
-    100% { transform: translateY(-180px); opacity: 0; }
-  }
-
-  .confetti {
-    position: absolute;
-    font-size: 1.5em;
-    animation: confetti-fall 1.5s linear forwards;
-  }
-
-  @keyframes confetti-fall {
-    0% { transform: translateY(0) rotate(0deg); opacity: 1; }
-    100% { transform: translateY(200px) rotate(360deg); opacity: 0; }
-  }
+@keyframes confetti-fall {
+  0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(200px) rotate(360deg); opacity: 0; }
+}
 
 </style>
 </head>
@@ -148,107 +130,116 @@
 <div id="kissContainer"></div>
 <div id="hugContainer"></div>
 
-<!-- Embedded soft chime sound -->
+<!-- Embedded soft chime -->
 <audio id="chimeSound" preload="auto">
-  <source src="data:audio/mp3;base64,//uQxAA..." type="audio/mpeg">
+  <source src="data:audio/mp3;base64,//uQxAAAA..." type="audio/mpeg">
 </audio>
 
 <script>
-  const kissBtn = document.getElementById('kissBtn');
-  const kissContainer = document.getElementById('kissContainer');
-  const hugContainer = document.getElementById('hugContainer');
-  const title = document.getElementById('title');
-  const naughty = document.getElementById('naughty');
-  const chimeSound = document.getElementById('chimeSound');
+const kissBtn = document.getElementById('kissBtn');
+const kissContainer = document.getElementById('kissContainer');
+const hugContainer = document.getElementById('hugContainer');
+const title = document.getElementById('title');
+const naughty = document.getElementById('naughty');
+const chimeSound = document.getElementById('chimeSound');
 
-  // Kiss button
-  kissBtn.addEventListener('click', () => {
-    chimeSound.currentTime = 0;
-    chimeSound.play();
+// Play sound on first interaction if blocked
+function playChime() {
+  chimeSound.currentTime = 0;
+  chimeSound.play().catch(()=>{}); // ignore autoplay block
+}
 
-    for(let i=0;i<3;i++){
-      const kiss = document.createElement('div');
-      kiss.textContent = "💋";
-      kiss.className = 'kiss';
-      kiss.style.left = Math.random() * (window.innerWidth - 50) + 'px';
-      kiss.style.top = '80%';
-      kissContainer.appendChild(kiss);
+kissBtn.addEventListener('click', () => {
+  playChime();
 
-      // Sparkle trail for kiss
-      for(let j=0;j<3;j++){
-        const sparkle = document.createElement('div');
-        sparkle.className='kiss-sparkle';
-        sparkle.textContent=["✨","💫","🌟"][Math.floor(Math.random()*3)];
-        sparkle.style.left = parseInt(kiss.style.left) + Math.random()*20 - 10 + 'px';
-        sparkle.style.top = parseInt(kiss.style.top) + 'px';
-        kissContainer.appendChild(sparkle);
-        setTimeout(()=>sparkle.remove(),1500);
-      }
+  // Multiple kisses
+  for(let i=0;i<5;i++){
+    const kiss = document.createElement('div');
+    kiss.textContent="💋";
+    kiss.className="kiss";
+    kiss.style.left=Math.random()*(window.innerWidth-50)+'px';
+    kiss.style.top='80%';
+    kissContainer.appendChild(kiss);
 
-      setTimeout(()=>kiss.remove(),1500);
+    // Kiss sparkles
+    for(let j=0;j<4;j++){
+      const sparkle=document.createElement('div');
+      sparkle.className="kiss-sparkle";
+      sparkle.textContent=["✨","💫","🌟"][Math.floor(Math.random()*3)];
+      sparkle.style.left=parseInt(kiss.style.left)+Math.random()*20-10+'px';
+      sparkle.style.top=parseInt(kiss.style.top)+'px';
+      kissContainer.appendChild(sparkle);
+      setTimeout(()=>sparkle.remove(),2000);
     }
 
-    // LEVEL UP
-    const levelup = document.createElement('div');
-    levelup.textContent = "LEVEL UP 🎮 Bubu Bear +1";
-    levelup.className='levelup';
-    kissContainer.appendChild(levelup);
+    setTimeout(()=>kiss.remove(),2000);
+  }
 
-    // Sparkles around LEVEL UP
-    const sparkleSymbols = ["✨","💫","🌟"];
-    for(let i=0;i<8;i++){
-      const sparkle = document.createElement('div');
-      sparkle.className='sparkle';
-      sparkle.textContent=sparkleSymbols[Math.floor(Math.random()*sparkleSymbols.length)];
-      sparkle.style.left = (50 + Math.random()*20 - 10) + "%";
-      sparkle.style.top = (50 + Math.random()*10 - 5) + "%";
-      levelup.appendChild(sparkle);
-      setTimeout(()=>sparkle.remove(),800);
-    }
+  // LEVEL UP in center
+  const levelup=document.createElement('div');
+  levelup.textContent="LEVEL UP 🎮 Bubu Bear +1";
+  levelup.className="levelup";
+  kissContainer.appendChild(levelup);
 
-    setTimeout(()=>levelup.remove(),1500);
+  // LEVEL UP sparkles
+  const sparkleSymbols=["✨","💫","🌟"];
+  for(let i=0;i<10;i++){
+    const sparkle=document.createElement('div');
+    sparkle.className="kiss-sparkle";
+    sparkle.textContent=sparkleSymbols[Math.floor(Math.random()*sparkleSymbols.length)];
+    sparkle.style.left=(50+Math.random()*20-10)+"%";
+    sparkle.style.top=(50+Math.random()*10-5)+"%";
+    levelup.appendChild(sparkle);
+    setTimeout(()=>sparkle.remove(),1500);
+  }
 
-    // Confetti
-    const confettiSymbols = ["💜","💚","✨","💖","💋"];
-    for(let i=0;i<30;i++){
-      const confetti = document.createElement('div');
-      confetti.className='confetti';
-      confetti.textContent=confettiSymbols[Math.floor(Math.random()*confettiSymbols.length)];
-      confetti.style.left = Math.random() * window.innerWidth + 'px';
-      confetti.style.fontSize = (12 + Math.random()*12) + 'px';
-      kissContainer.appendChild(confetti);
-      setTimeout(()=>confetti.remove(),1500);
-    }
-  });
+  setTimeout(()=>levelup.remove(),1500);
 
-  // Secret message
-  title.addEventListener('click', () => {
-    naughty.style.display = 'inline';
-  });
+  // Extra confetti hearts
+  const confettiSymbols=["💜","💚","✨","💖","💋"];
+  for(let i=0;i<40;i++){
+    const confetti=document.createElement('div');
+    confetti.className='confetti';
+    confetti.textContent=confettiSymbols[Math.floor(Math.random()*confettiSymbols.length)];
+    confetti.style.left=Math.random()*window.innerWidth+'px';
+    confetti.style.fontSize=(12+Math.random()*12)+'px';
+    kissContainer.appendChild(confetti);
+    setTimeout(()=>confetti.remove(),1500);
+  }
+});
 
-  // Hug button
-  hugBtn.addEventListener('click', () => {
-    const hugSymbols = ["🤍","💖","💛","💚"];
-    for(let i=0;i<5;i++){
-      const hug = document.createElement('div');
-      hug.textContent = "🤗";
-      hug.className='hug-animation';
-      hug.style.left = Math.random() * (window.innerWidth - 50) + 'px';
-      hugContainer.appendChild(hug);
-      hug.style.animation = "hug-float 2s ease forwards";
-      setTimeout(()=>hug.remove(),2000);
-    }
+// Reveal secret
+title.addEventListener('click', ()=>naughty.style.display='inline');
 
-    for(let i=0;i<25;i++){
-      const confetti = document.createElement('div');
-      confetti.className='confetti';
-      confetti.textContent=hugSymbols[Math.floor(Math.random()*hugSymbols.length)];
-      confetti.style.left = Math.random() * window.innerWidth + 'px';
-      confetti.style.fontSize = (12 + Math.random()*12) + 'px';
-      hugContainer.appendChild(confetti);
-      setTimeout(()=>confetti.remove(),1500);
-    }
-  });
+// Hug button
+hugBtn.addEventListener('click', ()=>{
+  playChime();
+
+  const hugSymbols=["🤍","💖","💛","💚","🤗","💋"];
+  // floating hugs
+  for(let i=0;i<6;i++){
+    const hug=document.createElement('div');
+    hug.textContent=hugSymbols[Math.floor(Math.random()*hugSymbols.length)];
+    hug.className="hug-animation hug-sparkle";
+    hug.style.left=Math.random()*(window.innerWidth-50)+'px';
+    hug.style.top='80%';
+    hugContainer.appendChild(hug);
+    hug.style.animation="sparkle-float 2s linear forwards";
+    setTimeout(()=>hug.remove(),2000);
+  }
+
+  // Extra hearts + kisses floating up
+  for(let i=0;i<50;i++){
+    const confetti=document.createElement('div');
+    confetti.className='hug-sparkle';
+    confetti.textContent=hugSymbols[Math.floor(Math.random()*hugSymbols.length)];
+    confetti.style.left=Math.random()*window.innerWidth+'px';
+    confetti.style.top='80%';
+    confetti.style.fontSize=(12+Math.random()*12)+'px';
+    hugContainer.appendChild(confetti);
+    setTimeout(()=>confetti.remove(),2000);
+  }
+});
 </script>
 </body>
 </html>
