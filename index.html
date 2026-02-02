@@ -10,17 +10,27 @@
     text-align: center;
     color: #fff;
     overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+  }
+
+  .invitation {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 30px;
+    background: rgba(0,0,0,0.3);
+    border-radius: 20px;
+    box-shadow: 0 0 20px #fff;
   }
 
   h1 {
     font-size: 3em;
-    margin-top: 50px;
     cursor: pointer;
   }
 
   #message {
     font-size: 1.5em;
-    margin: 20px;
+    margin: 20px 0;
   }
 
   button {
@@ -42,159 +52,7 @@
   .kiss {
     font-size: 2em;
     animation: float 1s ease forwards;
-  }
-
-  .levelup {
-    font-size: 2em;
-    color: #ffff00;
-    animation: bounce 0.8s ease forwards;
-  }
-
-  @keyframes float {
-    0% { transform: translateY(0); opacity: 0; }
-    50% { transform: translateY(-30px); opacity: 1; }
-    100% { transform: translateY(-60px); opacity: 0; }
-  }
-
-  @keyframes bounce {
-    0% { transform: scale(0); }
-    50% { transform: scale(1.3); }
-    100% { transform: scale(1); }
-  }
-
-  #hug {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    font-size: 2em;
-    cursor: pointer;
-  }
-
-  .hug-animation {
     position: absolute;
-    font-size: 2em;
-    animation: hugfloat 2s ease forwards;
-  }
-
-  @keyframes hugfloat {
-    0% { top: 50%; opacity: 1; }
-    100% { top: 10%; opacity: 0; }
-  }
-</style>
-</head>
-<body>
-
-<h1 id="title">Happy Birthday Bubu Bear 🧸</h1>
-
-<div id="message">
-  Even when we are far apart, I'll always love you. <br>
-  Thank you for being patient all these years. <br>
-  You are my favourite person. I love you more than anything. <br>
-  <span style="display:none;" id="naughty">I like it when you're naughty 😉</span>
-</div>
-
-<button id="kissBtn">Click for a kiss 💋</button>
-<button id="hugBtn">Send Hug 🤍</button>
-
-<div id="kissContainer"></div>
-
-<script>
-  const kissBtn = document.getElementById('kissBtn');
-  const kissContainer = document.getElementById('kissContainer');
-  const title = document.getElementById('title');
-  const naughty = document.getElementById('naughty');
-
-  kissBtn.addEventListener('click', () => {
-    // Create kiss emoji
-    const kiss = document.createElement('div');
-    kiss.textContent = "💋";
-    kiss.className = 'kiss';
-    kiss.style.position = 'absolute';
-    kiss.style.left = Math.random() * (window.innerWidth - 50) + 'px';
-    kiss.style.top = '80%';
-    kissContainer.appendChild(kiss);
-
-    // Remove after animation
-    setTimeout(() => kiss.remove(), 1000);
-
-    // Show LEVEL UP once
-    const levelup = document.createElement('div');
-    levelup.textContent = "LEVEL UP 🎮 Bubu Bear +1";
-    levelup.className = 'levelup';
-    levelup.style.position = 'absolute';
-    levelup.style.left = '50%';
-    levelup.style.top = '40%';
-    levelup.style.transform = 'translateX(-50%)';
-    kissContainer.appendChild(levelup);
-
-    setTimeout(() => levelup.remove(), 800);
-  });
-
-  // Title click reveals naughty message
-  title.addEventListener('click', () => {
-    naughty.style.display = 'inline';
-  });
-
-  // Hug button
-  const hugBtn = document.getElementById('hugBtn');
-  hugBtn.addEventListener('click', () => {
-    const hug = document.createElement('div');
-    hug.textContent = "🤍";
-    hug.className = 'hug-animation';
-    hug.style.left = Math.random() * (window.innerWidth - 50) + 'px';
-    hug.style.top = '80%';
-    document.body.appendChild(hug);
-    setTimeout(() => hug.remove(), 2000);
-  });
-</script>
-
-</body>
-</html>
-You sent
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<title>Bubu Bear Birthday 🎂</title>
-<style>
-  body {
-    background: linear-gradient(to bottom right, #a974ff, #00ff80);
-    font-family: 'Comic Sans MS', cursive, sans-serif;
-    text-align: center;
-    color: #fff;
-    overflow-x: hidden;
-  }
-
-  h1 {
-    font-size: 3em;
-    margin-top: 50px;
-    cursor: pointer;
-  }
-
-  #message {
-    font-size: 1.5em;
-    margin: 20px;
-  }
-
-  button {
-    font-size: 1.2em;
-    padding: 10px 20px;
-    margin: 15px;
-    border: none;
-    border-radius: 12px;
-    cursor: pointer;
-    background-color: #ff9ce3;
-    color: #000;
-    transition: transform 0.2s;
-  }
-
-  button:hover {
-    transform: scale(1.1);
-  }
-
-  .kiss {
-    font-size: 2em;
-    animation: float 1s ease forwards;
   }
 
   .levelup {
@@ -235,8 +93,8 @@ You sent
   }
 
   @keyframes hugfloat {
-    0% { top: 50%; opacity: 1; }
-    100% { top: 10%; opacity: 0; }
+    0% { top: 80%; opacity: 1; }
+    100% { top: 20%; opacity: 0; }
   }
 
   .confetti {
@@ -249,37 +107,48 @@ You sent
     0% { transform: translateY(0) rotate(0deg); opacity: 1; }
     100% { transform: translateY(200px) rotate(360deg); opacity: 0; }
   }
-
 </style>
 </head>
 <body>
 
-<h1 id="title">Happy Birthday Bubu Bear 🧸</h1>
+<div class="invitation">
+  <h1 id="title">Happy Birthday Bubu Bear 🧸</h1>
 
-<div id="message">
-  Even when we are far apart, I'll always love you. <br>
-  Thank you for being patient all these years. <br>
-  You are my favourite person. I love you more than anything. <br>
-  <span style="display:none;" id="naughty">I like it when you're naughty 😉</span>
+  <div id="message">
+    Even when we are far apart, I'll always love you. <br>
+    Thank you for being patient all these years. <br>
+    You are my favourite person. I love you more than anything. <br>
+    <span style="display:none;" id="naughty">I like it when you're naughty 😉</span>
+  </div>
+
+  <button id="kissBtn">Click for a kiss 💋</button>
+  <button id="hugBtn">Send Hug 🤍</button>
 </div>
 
-<button id="kissBtn">Click for a kiss 💋</button>
-<button id="hugBtn">Send Hug 🤍</button>
-
 <div id="kissContainer"></div>
+<div id="hugContainer"></div>
+
+<!-- Pop sound -->
+<audio id="popSound" src="https://www.soundjay.com/buttons/sounds/button-16.mp3" preload="auto"></audio>
 
 <script>
   const kissBtn = document.getElementById('kissBtn');
   const kissContainer = document.getElementById('kissContainer');
+  const hugContainer = document.getElementById('hugContainer');
   const title = document.getElementById('title');
   const naughty = document.getElementById('naughty');
+  const popSound = document.getElementById('popSound');
 
+  // Kiss button
   kissBtn.addEventListener('click', () => {
+    // Play pop sound
+    popSound.currentTime = 0;
+    popSound.play();
+
     // Kiss emoji
     const kiss = document.createElement('div');
     kiss.textContent = "💋";
     kiss.className = 'kiss';
-    kiss.style.position = 'absolute';
     kiss.style.left = Math.random() * (window.innerWidth - 50) + 'px';
     kiss.style.top = '80%';
     kissContainer.appendChild(kiss);
@@ -289,36 +158,34 @@ You sent
     const levelup = document.createElement('div');
     levelup.textContent = "LEVEL UP 🎮 Bubu Bear +1";
     levelup.className = 'levelup';
-    levelup.style.position = 'absolute';
     levelup.style.left = '50%';
     levelup.style.top = '40%';
     levelup.style.transform = 'translateX(-50%)';
     kissContainer.appendChild(levelup);
 
-    // Sparkles around LEVEL UP
+    // Sparkles
     const sparkleSymbols = ["✨","💫","🌟"];
-    for(let i=0; i<8; i++){
+    for(let i=0;i<8;i++){
       const sparkle = document.createElement('div');
-      sparkle.className = 'sparkle';
-      sparkle.textContent = sparkleSymbols[Math.floor(Math.random()*sparkleSymbols.length)];
+      sparkle.className='sparkle';
+      sparkle.textContent=sparkleSymbols[Math.floor(Math.random()*sparkleSymbols.length)];
       sparkle.style.left = (50 + Math.random()*20 - 10) + "%";
       sparkle.style.top = (40 + Math.random()*10 - 5) + "%";
       levelup.appendChild(sparkle);
-      setTimeout(() => sparkle.remove(), 800);
+      setTimeout(()=>sparkle.remove(),800);
     }
+    setTimeout(()=>levelup.remove(),800);
 
-    setTimeout(() => levelup.remove(), 800);
-
-    // Confetti hearts and sparkles
+    // Confetti
     const confettiSymbols = ["💜","💚","✨","💖"];
-    for(let i=0; i<25; i++){
+    for(let i=0;i<25;i++){
       const confetti = document.createElement('div');
-      confetti.className = 'confetti';
+      confetti.className='confetti';
       confetti.textContent = confettiSymbols[Math.floor(Math.random()*confettiSymbols.length)];
       confetti.style.left = Math.random() * window.innerWidth + 'px';
       confetti.style.fontSize = (12 + Math.random()*12) + 'px';
       kissContainer.appendChild(confetti);
-      setTimeout(() => confetti.remove(), 1500);
+      setTimeout(()=>confetti.remove(),1500);
     }
   });
 
@@ -334,11 +201,21 @@ You sent
     hug.textContent = "🤍";
     hug.className = 'hug-animation';
     hug.style.left = Math.random() * (window.innerWidth - 50) + 'px';
-    hug.style.top = '80%';
-    document.body.appendChild(hug);
-    setTimeout(() => hug.remove(), 2000);
+    hugContainer.appendChild(hug);
+    setTimeout(()=>hug.remove(),2000);
+
+    // Confetti for hugs
+    const hugConfettiSymbols = ["🤍","💖","✨"];
+    for(let i=0;i<15;i++){
+      const confetti = document.createElement('div');
+      confetti.className='confetti';
+      confetti.textContent=hugConfettiSymbols[Math.floor(Math.random()*hugConfettiSymbols.length)];
+      confetti.style.left = Math.random() * window.innerWidth + 'px';
+      confetti.style.fontSize = (12 + Math.random()*12) + 'px';
+      hugContainer.appendChild(confetti);
+      setTimeout(()=>confetti.remove(),1500);
+    }
   });
 </script>
-
 </body>
 </html>
