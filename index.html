@@ -55,9 +55,8 @@
     transform: scale(1.1);
   }
 
-  .kiss {
+  .kiss, .hug-animation {
     font-size: 2em;
-    animation: float 1s ease forwards;
     position: absolute;
   }
 
@@ -72,12 +71,6 @@
     transform: translate(-50%, -50%);
     z-index: 9999;
     text-shadow: 0 0 10px #fff;
-  }
-
-  @keyframes float {
-    0% { transform: translateY(0); opacity: 0; }
-    50% { transform: translateY(-30px); opacity: 1; }
-    100% { transform: translateY(-60px); opacity: 0; }
   }
 
   @keyframes bounce {
@@ -110,23 +103,17 @@
   .kiss-sparkle {
     position: absolute;
     font-size: 0.8em;
-    animation: kiss-sparkle-float 0.8s linear forwards;
+    animation: kiss-sparkle-float 1.5s linear forwards;
   }
 
   @keyframes kiss-sparkle-float {
     0% { transform: translate(0,0); opacity: 1; }
-    100% { transform: translate(10px,-40px) rotate(360deg); opacity: 0; }
+    100% { transform: translate(0,-120px); opacity: 0; }
   }
 
-  .hug-animation {
-    position: absolute;
-    font-size: 2em;
-    animation: hugfloat 2s ease forwards;
-  }
-
-  @keyframes hugfloat {
-    0% { top: 80%; opacity: 1; }
-    100% { top: 20%; opacity: 0; }
+  @keyframes hug-float {
+    0% { transform: translateY(0); opacity: 1; }
+    100% { transform: translateY(-180px); opacity: 0; }
   }
 
   .confetti {
@@ -139,6 +126,7 @@
     0% { transform: translateY(0) rotate(0deg); opacity: 1; }
     100% { transform: translateY(200px) rotate(360deg); opacity: 0; }
   }
+
 </style>
 </head>
 <body>
@@ -160,8 +148,10 @@
 <div id="kissContainer"></div>
 <div id="hugContainer"></div>
 
-<!-- Soft chime sound -->
-<audio id="chimeSound" src="https://freesound.org/data/previews/522/522973_11224867-lq.mp3" preload="auto"></audio>
+<!-- Embedded soft chime sound -->
+<audio id="chimeSound" preload="auto">
+  <source src="data:audio/mp3;base64,//uQxAA..." type="audio/mpeg">
+</audio>
 
 <script>
   const kissBtn = document.getElementById('kissBtn');
@@ -173,35 +163,35 @@
 
   // Kiss button
   kissBtn.addEventListener('click', () => {
-    // Play soft chime
     chimeSound.currentTime = 0;
     chimeSound.play();
 
-    // Kiss emoji
-    const kiss = document.createElement('div');
-    kiss.textContent = "💋";
-    kiss.className = 'kiss';
-    kiss.style.left = Math.random() * (window.innerWidth - 50) + 'px';
-    kiss.style.top = '80%';
-    kissContainer.appendChild(kiss);
-
-    // Sparkle trail for kiss
     for(let i=0;i<3;i++){
-      const sparkle = document.createElement('div');
-      sparkle.className='kiss-sparkle';
-      sparkle.textContent=["✨","💫","🌟"][Math.floor(Math.random()*3)];
-      sparkle.style.left = parseInt(kiss.style.left) + Math.random()*20 - 10 + 'px';
-      sparkle.style.top = parseInt(kiss.style.top) + 'px';
-      kissContainer.appendChild(sparkle);
-      setTimeout(()=>sparkle.remove(),800);
+      const kiss = document.createElement('div');
+      kiss.textContent = "💋";
+      kiss.className = 'kiss';
+      kiss.style.left = Math.random() * (window.innerWidth - 50) + 'px';
+      kiss.style.top = '80%';
+      kissContainer.appendChild(kiss);
+
+      // Sparkle trail for kiss
+      for(let j=0;j<3;j++){
+        const sparkle = document.createElement('div');
+        sparkle.className='kiss-sparkle';
+        sparkle.textContent=["✨","💫","🌟"][Math.floor(Math.random()*3)];
+        sparkle.style.left = parseInt(kiss.style.left) + Math.random()*20 - 10 + 'px';
+        sparkle.style.top = parseInt(kiss.style.top) + 'px';
+        kissContainer.appendChild(sparkle);
+        setTimeout(()=>sparkle.remove(),1500);
+      }
+
+      setTimeout(()=>kiss.remove(),1500);
     }
 
-    setTimeout(() => kiss.remove(), 1000);
-
-    // LEVEL UP in center with glow & heartbeat
+    // LEVEL UP
     const levelup = document.createElement('div');
     levelup.textContent = "LEVEL UP 🎮 Bubu Bear +1";
-    levelup.className = 'levelup';
+    levelup.className='levelup';
     kissContainer.appendChild(levelup);
 
     // Sparkles around LEVEL UP
@@ -219,11 +209,11 @@
     setTimeout(()=>levelup.remove(),1500);
 
     // Confetti
-    const confettiSymbols = ["💜","💚","✨","💖"];
-    for(let i=0;i<25;i++){
+    const confettiSymbols = ["💜","💚","✨","💖","💋"];
+    for(let i=0;i<30;i++){
       const confetti = document.createElement('div');
       confetti.className='confetti';
-      confetti.textContent = confettiSymbols[Math.floor(Math.random()*confettiSymbols.length)];
+      confetti.textContent=confettiSymbols[Math.floor(Math.random()*confettiSymbols.length)];
       confetti.style.left = Math.random() * window.innerWidth + 'px';
       confetti.style.fontSize = (12 + Math.random()*12) + 'px';
       kissContainer.appendChild(confetti);
@@ -231,30 +221,28 @@
     }
   });
 
-  // Title click reveals naughty message
+  // Secret message
   title.addEventListener('click', () => {
     naughty.style.display = 'inline';
   });
 
   // Hug button
-  const hugBtn = document.getElementById('hugBtn');
   hugBtn.addEventListener('click', () => {
-    for(let i=0;i<3;i++){
-      // Floating hug
+    const hugSymbols = ["🤍","💖","💛","💚"];
+    for(let i=0;i<5;i++){
       const hug = document.createElement('div');
-      hug.textContent = "🤍";
-      hug.className = 'hug-animation';
+      hug.textContent = "🤗";
+      hug.className='hug-animation';
       hug.style.left = Math.random() * (window.innerWidth - 50) + 'px';
       hugContainer.appendChild(hug);
+      hug.style.animation = "hug-float 2s ease forwards";
       setTimeout(()=>hug.remove(),2000);
     }
 
-    // Extra hearts/confetti
-    const hugConfettiSymbols = ["🤍","💖","💛","💚","✨"];
-    for(let i=0;i<20;i++){
+    for(let i=0;i<25;i++){
       const confetti = document.createElement('div');
       confetti.className='confetti';
-      confetti.textContent=hugConfettiSymbols[Math.floor(Math.random()*hugConfettiSymbols.length)];
+      confetti.textContent=hugSymbols[Math.floor(Math.random()*hugSymbols.length)];
       confetti.style.left = Math.random() * window.innerWidth + 'px';
       confetti.style.fontSize = (12 + Math.random()*12) + 'px';
       hugContainer.appendChild(confetti);
